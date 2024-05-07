@@ -44,8 +44,9 @@ function load_mailbox(mailbox) {
 
         // create div for each email
         const createdEmail = document.createElement('div');
+
         // Bootstrap create box
-        createdEmail.className = "list-group-item"
+        createdEmail.classList.add("list-group-item");
 
         // Load content
         createdEmail.innerHTML = 
@@ -56,7 +57,16 @@ function load_mailbox(mailbox) {
           `;
 
         // Background for read/unread emails
-        createdEmail.className = singleEmail.read ? 'read': 'unread';
+        // createdEmail.className = singleEmail.read ? 'read': 'unread';
+
+        // Background for read/unread emails
+        if (singleEmail.read) {
+          createdEmail.classList.add('read');
+        } else {
+          createdEmail.classList.add('unread');
+        }
+      
+
 
         // click on email
         createdEmail.addEventListener('click', function() {

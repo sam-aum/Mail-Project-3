@@ -3,9 +3,11 @@ textarea {
 }
 
 .read{
-    background-color: rgb(164, 159, 170);
+    background-color: rgb(212, 212, 212);
+    /* border: 1px black; */
 }
 
 .unread{
-    background-color: aquamarine;
+    background-color: white;
+    /* border: 1px solid black; */
 }
