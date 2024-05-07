@@ -44,12 +44,21 @@ function load_mailbox(mailbox) {
 
         // create div for each email
         const createdEmail = document.createElement('div');
+        // Bootstrap create box
+        createdEmail.className = "list-group-item"
+
+        // Load content
         createdEmail.innerHTML = 
           `
             <h5>Sender: ${singleEmail.sender}</h5>
             <p>Subject: ${singleEmail.subject}</p>
             <p>${singleEmail.timestamp}</p>
           `;
+
+        // Background for read/unread emails
+        createdEmail.className = singleEmail.read ? 'read': 'unread';
+
+        // click on email
         createdEmail.addEventListener('click', function() {
             console.log('This element has been clicked!')
         });
