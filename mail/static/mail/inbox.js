@@ -33,6 +33,24 @@ function load_mailbox(mailbox) {
 
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
+
+
+  // Get emails for that mailbox and user.
+  fetch(`/emails/${mailbox}`)
+  .then(response => response.json())
+  .then(emails => {
+      // Loop through emails and create a div for each email
+      emails.forEach(singleEmail => {
+        
+        // create div for each email
+        const createdEmail = document.createElement('div');
+        createdEmail.innerHTML = 'This is the content of the div.';
+        createdEmail.addEventListener('click', function() {
+            console.log('This element has been clicked!')
+        });
+        document.querySelector('#emails-view').append(createdEmail);
+      });
+  });
 }
 
 function send_email(event) {
