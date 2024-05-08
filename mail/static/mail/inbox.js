@@ -25,6 +25,10 @@ function compose_email() {
   document.querySelector('#compose-body').value = '';
 }
 
+function view_email(id) {
+  console.log(id)
+}
+
 function load_mailbox(mailbox) {
   
   // Show the mailbox and hide other views
@@ -48,6 +52,7 @@ function load_mailbox(mailbox) {
         // Bootstrap create box
         createdEmail.classList.add("list-group-item");
 
+
         // Load content
         createdEmail.innerHTML = 
           `
@@ -70,7 +75,7 @@ function load_mailbox(mailbox) {
 
         // click on email
         createdEmail.addEventListener('click', function() {
-            console.log('This element has been clicked!')
+          view_email(singleEmail.id)
         });
         document.querySelector('#emails-view').append(createdEmail);
       });
@@ -102,3 +107,4 @@ function send_email(event) {
       load_mailbox('sent');
   });
 }
+
