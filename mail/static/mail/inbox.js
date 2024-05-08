@@ -121,13 +121,24 @@ function view_email(id) {
 
       document.querySelector('#single-email-view').innerHTML = 
       `
-        <ul class="list-group">
-          <li class="list-group-item"><strong>From:</strong> ${email.sender}</li>
-          <li class="list-group-item"><strong>To:</strong> ${email.recipients}</li>
-          <li class="list-group-item"><strong>Subject:</strong> ${email.subject}</li>
-          <li class="list-group-item"><strong>Timestamp:</strong> ${email.timestamp}</li>
+        <ul style="list-style-type: none;">
+          <li><strong>From:</strong> ${email.sender}</li>
+          <li><strong>To:</strong> ${email.recipients}</li>
+          <li><strong>Subject:</strong> ${email.subject}</li>
+          <li><strong>Timestamp:</strong> ${email.timestamp}</li>
+          <hr>
+          <li>${email.body}</li>
       `;
-  
-      // ... do something else with email ...
+
+      // Find if read
+      if(!email.read){
+        fetch(`/emails/${email.id}`, {
+          method: 'PUT',
+          body: JSON.stringify({
+              read: true
+          })
+        })
+      }
+
   });
 }
