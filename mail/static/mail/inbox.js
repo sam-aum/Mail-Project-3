@@ -140,5 +140,31 @@ function view_email(id) {
         })
       }
 
+      // Archive button
+      const archive_button = document.createElement('button');
+      archive_button.innerHTML = email.archived ? "Unarchive": "Archive";
+      archive_button.className = email.archived ? "btn btn-success ": "btn btn-danger";
+      archive_button.addEventListener('click', function() {
+        fetch(`/emails/${email.id}`, {
+          method: 'PUT',
+          body: JSON.stringify({
+              archived: !email.archived
+          })
+        })
+        .then(() => load_mailbox('archive'))
+      });
+      document.querySelector('#single-email-view').append(archive_button);
+
+
+      // Reply Button
+      const reply_button = document.createElement('button');
+      reply_button.innerHTML = "Reply";
+      reply_button.className = "btn btn-info";
+      reply_button.addEventListener('click', function() {
+        console.log("hello")
+      });
+      document.querySelector('#single-email-view').append(reply_button);
+
+
   });
 }
