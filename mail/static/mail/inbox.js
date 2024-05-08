@@ -161,7 +161,12 @@ function view_email(id) {
       reply_button.innerHTML = "Reply";
       reply_button.className = "btn btn-info";
       reply_button.addEventListener('click', function() {
-        console.log("hello")
+        compose_email();
+
+        document.querySelector('#compose-recipients').value = email.sender;
+        document.querySelector('#compose-subject').value = '';
+        document.querySelector('#compose-body').value = `On ${email.timestamp} ${email.sender} wrote: ${email.body}`;
+
       });
       document.querySelector('#single-email-view').append(reply_button);
 
