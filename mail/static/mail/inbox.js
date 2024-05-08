@@ -164,7 +164,12 @@ function view_email(id) {
         compose_email();
 
         document.querySelector('#compose-recipients').value = email.sender;
-        document.querySelector('#compose-subject').value = '';
+
+        let subject = email.subject;
+        if(subject.split(' ',1)[0] != "Re:"){
+          subject = "Re: " + email.subject;
+        } 
+        document.querySelector('#compose-subject').value = subject;
         document.querySelector('#compose-body').value = `On ${email.timestamp} ${email.sender} wrote: ${email.body}`;
 
       });
