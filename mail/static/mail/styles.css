@@ -11,3 +11,24 @@ textarea {
     background-color: white;
     /* border: 1px solid black; */
 }
+
+.email-info {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-grow: 1;
+  }
+  
+  .email-sender {
+    font-weight: bold;
+  }
+  
+  .email-subject {
+    margin-left: 10px;
+    flex-grow: 1;
+  }
+  
+  .email-timestamp {
+    white-space: nowrap;
+  }
+  

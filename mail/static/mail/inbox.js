@@ -39,7 +39,7 @@ function load_mailbox(mailbox) {
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
 
 
-  // Get emails for that mailbox and user.
+  // Get emails for mailbox and user.
   fetch(`/emails/${mailbox}`)
   .then(response => response.json())
   .then(emails => {
@@ -50,17 +50,24 @@ function load_mailbox(mailbox) {
         const createdEmail = document.createElement('div');
 
         // Bootstrap create box
-        createdEmail.classList.add("list-group-item");
+        createdEmail.classList.add("list-group-item", "d-flex", "justify-content-between");
 
 
         // Load content
-        createdEmail.innerHTML = 
+        // createdEmail.innerHTML = 
+        //   `
+        //     <h5>Sender: ${singleEmail.sender}</h5>
+        //     <p>Subject: ${singleEmail.subject}</p>
+        //     <p>${singleEmail.timestamp}</p>
+        //   `;
+          createdEmail.innerHTML = 
           `
-            <h5>Sender: ${singleEmail.sender}</h5>
-            <p>Subject: ${singleEmail.subject}</p>
-            <p>${singleEmail.timestamp}</p>
+            <div class="email-info">
+              <span class="email-sender">${singleEmail.sender}</span>
+              <span class="email-subject">${singleEmail.subject}</span>
+            </div>
+            <div class="email-timestamp">${singleEmail.timestamp}</div>
           `;
-
         // Background for read/unread emails
         // createdEmail.className = singleEmail.read ? 'read': 'unread';
 
@@ -151,6 +158,7 @@ function view_email(id) {
               archived: !email.archived
           })
         })
+        // Redirect to archive after button pushed
         .then(() => load_mailbox('archive'))
       });
       document.querySelector('#single-email-view').append(archive_button);
