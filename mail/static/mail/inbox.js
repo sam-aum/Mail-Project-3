@@ -168,16 +168,22 @@ function view_email(id) {
       const reply_button = document.createElement('button');
       reply_button.innerHTML = "Reply";
       reply_button.className = "btn btn-info";
+
+      // Add an event listener to handle the click event
       reply_button.addEventListener('click', function() {
+        // use compose function 
         compose_email();
 
+        // Set the recipients field with sender's email
         document.querySelector('#compose-recipients').value = email.sender;
 
-        let subject = email.subject;
-        if(subject.split(' ',1)[0] != "Re:"){
-          subject = "Re: " + email.subject;
-        } 
+        // Use "Re:" if not already used
+        const subjectPrefix = "Re:";
+        let subject = email.subject.startsWith(subjectPrefix) ? email.subject : `${subjectPrefix} ${email.subject}`;
+
         document.querySelector('#compose-subject').value = subject;
+
+
         document.querySelector('#compose-body').value = `On ${email.timestamp} ${email.sender} wrote: ${email.body}`;
 
       });
